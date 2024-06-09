@@ -1,0 +1,26 @@
+service: api-restfull
+
+app: company-hero
+org: marquin
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: dev
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+functions:
+  hello:
+    handler: handler.hello
+    name: ${sls:stage}-get-playlist
+    events:
+      - http:
+          path: /playlist
+          method: get
+
+plugins:
+  - serverless-python-requirements
