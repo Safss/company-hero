@@ -15,7 +15,7 @@ custom:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: handler.handler
     name: ${sls:stage}-get-playlist
     events:
       - http:
