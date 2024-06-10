@@ -12,8 +12,11 @@ class GetPlaylistUseCase:
         if not city:
             raise MissingCityException("Parameter city is missing")
 
-        city_temperature = self.weather_repository.get_weather_termperature(city=city)
+        city_temperature = self.get_city_temperature(city=city)
         return {"temperatura": city_temperature}
+    
+    def get_city_temperature(self, city: str) -> int:
+        return self.weather_repository.get_weather_termperature(city=city)
     
     def get_city_from_event(self, event: Dict[str, Any]) -> Optional[str]:
         queryString = event.get("queryStringParameters", {})
