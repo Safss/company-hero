@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from domain.entity.playlist import PlayList
 from domain.errors.exceptions import MissingCityException
 from domain.repository.i_playlist_repository import IPlayListRepository
@@ -25,7 +25,7 @@ class GetPlaylistUseCase:
         weather = self.weather_repository.get_weather_termperature(city)
         return weather.main.get('temp', None)
     
-    def get_playlist(self, musical_genre: str) -> Dict[str, Any]:
+    def get_playlist(self, musical_genre: str) -> List[Dict[str, Any]]:
         return self.playlist_repository.get_playlist(musical_genre)
     
     def get_city_from_event(self, event: Dict[str, Any]) -> Optional[str]:

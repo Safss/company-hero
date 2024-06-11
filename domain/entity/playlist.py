@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
 class PlayList:
@@ -22,7 +22,7 @@ class PlayList:
         return self._playlist
     
     @playlist.setter
-    def playlist(self, playlist: Dict[str, Any]):
+    def playlist(self, playlist: List[Dict[str, Any]]):
         self._playlist = playlist
 
     @property
