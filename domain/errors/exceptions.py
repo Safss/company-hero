@@ -6,3 +6,6 @@ class MissingCityException(Exception):
 
 class WeatherApiException(Exception):
     """Any problem that happens with weather api"""
+
+class SpotifyApiException(Exception):
+    """Any problem that happens with spotify api"""
