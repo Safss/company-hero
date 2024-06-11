@@ -16,6 +16,8 @@ custom:
 functions:
   hello:
     handler: handler.handler
+    environment:
+      weatherApikey: ${param:weatherApikey}
     name: ${sls:stage}-get-playlist
     events:
       - http:
