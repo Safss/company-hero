@@ -18,6 +18,8 @@ functions:
     handler: handler.handler
     environment:
       weatherApikey: ${param:weatherApikey}
+      spotifyClientId: ${param:spotifyClientId}
+      spotifyClientSecret: ${param:spotifyClientSecret}
     name: ${sls:stage}-get-playlist
     events:
       - http:
