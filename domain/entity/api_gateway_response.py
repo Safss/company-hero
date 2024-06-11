@@ -12,5 +12,5 @@ class ApiGatewayResponse:
         return {
             "statusCode": self.status_code,
             "headers": {"Access-Control-Allow-Methods": "GET"},
-            "body": json.dumps(self.body.__dict__, indent=4)
+            "body": json.dumps(self.body.__dict__, indent=4, ensure_ascii=False)
         }
