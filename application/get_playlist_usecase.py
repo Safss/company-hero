@@ -1,4 +1,5 @@
 from typing import Any, Dict, Optional
+from domain.entity.playlist import PlayList
 from domain.errors.exceptions import MissingCityException
 
 from domain.repository.i_weather_repository import IWeatherRepository
@@ -11,9 +12,11 @@ class GetPlaylistUseCase:
         city = self.get_city_from_event(event)
         if not city:
             raise MissingCityException("Parameter city is missing")
+        
+        playlist = PlayList(city=city)
+        playlist.temperature = self.get_city_temperature(city=city)
 
-        city_temperature = self.get_city_temperature(city=city)
-        return {"temperatura": city_temperature}
+        return playlist.generate_playlist_response()
     
     def get_city_temperature(self, city: str) -> int:
         return self.weather_repository.get_weather_termperature(city=city)
