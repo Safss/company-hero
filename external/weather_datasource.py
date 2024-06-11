@@ -13,6 +13,8 @@ class WeatherDatasource(IExternalWeatherDatasource):
         url = f"{URL_WEATHER}?q={city}&appid={API_KEY_WEATHER}&units=metric"
         try:
             response = self.request_service.get(url)
+            if response.status_code != 200:
+                raise WeatherApiException("not possible to access weather API")
             return WeatherModel.from_json(response.text)
         except Exception as error:
             raise WeatherApiException(str(error))

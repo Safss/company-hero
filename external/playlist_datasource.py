@@ -16,6 +16,8 @@ class PlayListDatasource(IExternalPlayListDatasource):
             token = self.get_token_request()
             url = f'{SPOTIFY_URL_SEARCH}?q=genre:{musical_genre}&type=playlist'
             spotify_response = self.request_service.get(url=url, headers={'Authorization': f'Bearer {token}'})
+            if spotify_response.status_code != 200:
+                raise SpotifyApiException("not possible to access spotify API")
             return json.loads(spotify_response.text).get("playlists", {}).get("items", [])
         except Exception as error:
             raise SpotifyApiException(str(error))
