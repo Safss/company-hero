@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Dict, Optional
 from application.get_playlist_usecase import GetPlaylistUseCase
-from dependencies import get_weather_repository
+from dependencies import get_playlist_repository, get_weather_repository
 from domain.entity.api_gateway_response import ApiGatewayResponse
 from domain.entity.api_gateway_response_body import ApiGatewayResponseBody
 
@@ -9,10 +9,11 @@ from domain.errors.exceptions import InvalidHandlerException
 
 # dependencies
 weather = get_weather_repository()
+playlist = get_playlist_repository()
 
 # functions mapping
 api_handlers = {
-    "/playlist": GetPlaylistUseCase(weather_repository=weather).execute
+    "/playlist": GetPlaylistUseCase(weather_repository=weather, playlist_repository=playlist).execute
 }
 
 def not_implemented(event: Dict[str, Any]):
