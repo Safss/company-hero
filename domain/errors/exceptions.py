@@ -3,3 +3,6 @@ class InvalidHandlerException(Exception):
 
 class MissingCityException(Exception):
     """Raised when city parameter is missing"""
+
+class WeatherApiException(Exception):
+    """Any problem that happens with weather api"""

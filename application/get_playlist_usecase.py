@@ -22,7 +22,8 @@ class GetPlaylistUseCase:
         return playlist.generate_playlist_response()
     
     def get_city_temperature(self, city: str) -> int:
-        return self.weather_repository.get_weather_termperature(city)
+        weather = self.weather_repository.get_weather_termperature(city)
+        return weather.main.get('temp', None)
     
     def get_playlist(self, musical_genre: str) -> Dict[str, Any]:
         return self.playlist_repository.get_playlist(musical_genre)
