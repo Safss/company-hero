@@ -9,18 +9,26 @@ provider:
   name: aws
   runtime: python3.9
   stage: dev
+  apiGateway:
+    apiKeys:
+      - ${opt:stage}-key-company-hero
 
 custom:
   stage: ${opt:stage, self:provider.stage}
 
 functions:
   hello:
-    handler: handler.hello
+    handler: handler.handler
+    environment:
+      weatherApikey: ${param:weatherApikey}
+      spotifyClientId: ${param:spotifyClientId}
+      spotifyClientSecret: ${param:spotifyClientSecret}
     name: ${sls:stage}-get-playlist
     events:
       - http:
           path: /playlist
           method: get
+          private: true
 
 plugins:
   - serverless-python-requirements
