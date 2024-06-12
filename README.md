@@ -30,3 +30,23 @@ O seu serviço deve ser construído com atenção aos seguintes aspectos:
 # Utilização
 
 https://documenter.getpostman.com/view/1717476/2sA3XPBgqh#f6e28b58-6424-4ca7-a856-7a07839dd8b9
+
+# Documentação
+
+## Arquitetura de código
+
+A escolha pela arquitetura clean no projeto visa melhorar a manutenibilidade, escalabilidade e testabilidade do código. Essa abordagem organiza o código em camadas bem definidas, separando responsabilidades e promovendo o princípio da separação de preocupações. Isso facilita a compreensão e a modificação do código sem afetar outras partes do sistema. Além disso, permite uma integração mais simples com serviços externos e a substituição de componentes internos sem grandes refatorações, resultando em um desenvolvimento mais eficiente e sustentável a longo prazo.
+
+/company-hero
+|-- handler.py -> handler main da lambda
+|-- dependencies.py -> Injeção de dependências
+|   |-- /application -> Possui todos os usecases(endpoints) para atender a API
+|   |-- /config -> Configurações globais do projeto, como chaves de API e URLs externas
+|   |-- /domain -> Regra de négocio entidades e interfaces paraa conversar com repositório
+|   |-- /external -> Comunicação com base de dados externas
+|   |-- /infra -> implementação de Models e Repositorios
+|   |-- /services -> Serviços de pacotes utilizados (utilizando somente requests para API)
+|   |-- /tests -> Testes unitários e de integração
+|-- requirements.txt -> Pacotes utilizados do Python
+|-- serverless.yml -> Arquivo de configuração para utilização do serviço de deploy escolhido (Infra as Code)
+|-- README.md
