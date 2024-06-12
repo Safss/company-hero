@@ -1,3 +1,4 @@
+import logging
 from config.globals import API_KEY_WEATHER, URL_WEATHER
 from domain.errors.exceptions import WeatherApiException
 from infra.datasource.i_external_weather_datasource import IExternalWeatherDatasource
@@ -14,7 +15,9 @@ class WeatherDatasource(IExternalWeatherDatasource):
         try:
             response = self.request_service.get(url)
             if response.status_code != 200:
+                logging.warning(f"[WeatherDatasource][get_weather_termperature]: not found city {city}")
                 raise WeatherApiException("not possible to access weather API")
             return WeatherModel.from_json(response.text)
         except Exception as error:
+            logging.error(f"[WeatherDatasource][get_weather_termperature][ERROR]: {str(error)}")
             raise WeatherApiException(str(error))

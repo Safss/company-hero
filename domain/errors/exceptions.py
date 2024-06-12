@@ -7,5 +7,11 @@ class MissingCityException(Exception):
 class WeatherApiException(Exception):
     """Any problem that happens with weather api"""
 
+class MissingWeatherApiInformationException(Exception):
+    """information about weather was not acquired"""
+
 class SpotifyApiException(Exception):
     """Any problem that happens with spotify api"""
+
+class MissingSpotifyApiInformationException(Exception):
+    """information about spotify was not acquired"""
