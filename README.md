@@ -37,6 +37,7 @@ https://documenter.getpostman.com/view/1717476/2sA3XPBgqh#f6e28b58-6424-4ca7-a85
 
 A escolha pela arquitetura clean no projeto visa melhorar a manutenibilidade, escalabilidade e testabilidade do código. Essa abordagem organiza o código em camadas bem definidas, separando responsabilidades e promovendo o princípio da separação de preocupações. Isso facilita a compreensão e a modificação do código sem afetar outras partes do sistema. Além disso, permite uma integração mais simples com serviços externos e a substituição de componentes internos sem grandes refatorações, resultando em um desenvolvimento mais eficiente e sustentável a longo prazo.
 
+```
 /company-hero
 |-- handler.py -> handler main da lambda
 |-- dependencies.py -> Injeção de dependências
@@ -50,3 +51,28 @@ A escolha pela arquitetura clean no projeto visa melhorar a manutenibilidade, es
 |-- requirements.txt -> Pacotes utilizados do Python
 |-- serverless.yml -> Arquivo de configuração para utilização do serviço de deploy escolhido (Infra as Code)
 |-- README.md
+```
+
+## Serviço de Deploy
+
+Para realizar o deploy do serviço, foi utilizado o framework Serverless, que trás os seguintes benefícios:
+
+- Simplicidade de Configuração: Facilita a configuração e implantação, permitindo que os desenvolvedores se concentrem na lógica da aplicação.
+- Redução de Overhead Operacional: Elimina a necessidade de gerenciar servidores, reduzindo o trabalho operacional.
+- Escala Automática: Dimensiona automaticamente as funções de acordo com a demanda, garantindo desempenho consistente.
+- Modelo de Preços Baseado em Uso: Pague apenas pelo tempo de computação consumido, resultando em potenciais economias de custo.
+- Integração com Outros Serviços: Facilita a integração com serviços AWS e de terceiros, permitindo arquiteturas escaláveis.
+- Facilidade de Manutenção: Simplifica atualizações e manutenções, agilizando o processo de desenvolvimento.
+
+Link do serviço: https://www.serverless.com/
+
+### utilização do Serverless
+
+- Foram criados dois estágios no serviço, para que fosse possível ter uma API de teste e outra de produção. Dessa forma, é possível deixar ambientes bem separados para a equipe de desenvolvimento poder criar coisas novas sem afetar a aplicação em Prod.
+- A aplicação foi acoplada ao GitHub, para que as branchs "Dev" e "Main" fossem observadas. Qualquer alteração feita em uma dessas branchs fará o deploy automático no respectivo estágio.
+- Foram colocados alguns parâmetros de ambiente na plataforma para que fosse feito o deploy, como chaves de API, o que garante segurança para que essas chaves não fiquem no código.
+- O dashboard possui um sistema de métricas para todas as lambdas deployadas, e também permite a criação de alertas, o que garante alta observabilidade da aplicação.
+
+![Deploys](https://ibb.co/L00YSNT)
+
+![Métricas](https://ibb.co/sWTQmTm)
