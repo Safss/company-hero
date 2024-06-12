@@ -73,6 +73,6 @@ Link do serviço: https://www.serverless.com/
 - Foram colocados alguns parâmetros de ambiente na plataforma para que fosse feito o deploy, como chaves de API, o que garante segurança para que essas chaves não fiquem no código.
 - O dashboard possui um sistema de métricas para todas as lambdas deployadas, e também permite a criação de alertas, o que garante alta observabilidade da aplicação.
 
-![Deploys](https://ibb.co/L00YSNT)
+![Deploys](https://i.ibb.co/XWWjXYn/deploys.png)
 
-![Métricas](https://ibb.co/sWTQmTm)
+![Métricas](https://i.ibb.co/MBzp2z2/metricas.png)
